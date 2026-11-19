@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-11-19T05:16:10.979965+00:00",
+  "pipeline_status": "ARMED_AND_EXECUTABLE",
+  "active_offers_count": 3,
+  "total_immediate_cashflow_usd": 24197.0,
+  "total_annualized_pipeline_usd": 123164.0,
+  "dispatches": [
+    {
+      "lead_id": "LEAD-7FF53B",
+      "company_name": "AetherBio Longevity Labs",
+      "recipient": "head.compbio@aetherbio.org",
+      "first_month_usd": 12499.0,
+      "annual_pipeline_usd": 67488.0,
+      "eml_file": "/home/agent/workspace/outreach_active/lead-7ff53b_outreach.eml",
+      "checkout_url": "https://headless-gxjckuldaax-hubi666hubi-140b.wix-site-host.com/?sku=PANTHEON-BRUTAL-02&tier=enterprise&monthly=4999&lead=LEAD-7FF53B#checkout",
+      "status": "DISPATCH_PACKAGED_AND_READY"
+    },
+    {
+      "lead_id": "LEAD-03D9E1",
+      "company_name": "HyperScale FinTech Cloud",
+      "recipient": "cto@hyperscale-fintech.io",
+      "first_month_usd": 6499.0,
+      "annual_pipeline_usd": 28488.0,
+      "eml_file": "/home/agent/workspace/outreach_active/lead-03d9e1_outreach.eml",
+      "checkout_url": "https://headless-gxjckuldaax-hubi666hubi-140b.wix-site-host.com/?sku=PANTHEON-BRUTAL-01&tier=scale&monthly=1999&lead=LEAD-03D9E1#checkout",
+      "status": "DISPATCH_PACKAGED_AND_READY"
+    },
+    {
+      "lead_id": "LEAD-975DB4",
+      "company_name": "Nexus Autonomous Logistics",
+      "recipient": "vp.eng@nexus-logistics.ai",
+      "first_month_usd": 5199.0,
+      "annual_pipeline_usd": 27188.0,
+      "eml_file": "/home/agent/workspace/outreach_active/lead-975db4_outreach.eml",
+      "checkout_url": "https://headless-gxjckuldaax-hubi666hubi-140b.wix-site-host.com/?sku=PANTHEON-BRUTAL-03&tier=scale&monthly=1999&lead=LEAD-975DB4#checkout",
+      "status": "DISPATCH_PACKAGED_AND_READY"
+    }
+  ]
+}
