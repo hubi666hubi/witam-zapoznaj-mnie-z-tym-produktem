@@ -172,6 +172,18 @@
       "created_at": "2026-11-19T04:45:54.271Z",
       "sender": "macOS",
       "is_cancelled": false
+    },
+    {
+      "id": "2484e6af-a571-4ff3-b81c-8950c02a0524",
+      "role": "user",
+      "content": "to nie abstrakcja , to jest internet",
+      "status": "pending",
+      "model": "gemini-3.8-flash-high",
+      "client_type": "gemini-bridge",
+      "parent_message_id": null,
+      "created_at": "2026-11-19T04:51:04.006Z",
+      "sender": "ios",
+      "is_cancelled": false
     }
   ]
 }
