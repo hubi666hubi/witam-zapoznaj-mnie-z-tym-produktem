@@ -340,6 +340,18 @@
       "created_at": "2026-11-19T05:42:03.187Z",
       "sender": "macOS",
       "is_cancelled": false
+    },
+    {
+      "id": "ddb53a7a-cae4-4305-baa1-b808b4c374e9",
+      "role": "user",
+      "content": "Zaraz wygeneruje ci klucz . ile sztuk chcesz?",
+      "status": "pending",
+      "model": "gemini-3.8-flash-high",
+      "client_type": "gemini-bridge",
+      "parent_message_id": null,
+      "created_at": "2026-11-19T05:43:43.574Z",
+      "sender": "ios",
+      "is_cancelled": false
     }
   ]
 }
