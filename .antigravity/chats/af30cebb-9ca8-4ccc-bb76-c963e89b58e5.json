@@ -88,6 +88,18 @@
       "created_at": "2026-11-19T04:22:31.367Z",
       "sender": "ios",
       "is_cancelled": false
+    },
+    {
+      "id": "99c6c189-cb6d-4f7d-94f8-4a206d762268",
+      "role": "agent",
+      "content": "Jasna sprawa, byku! Piękny układ – klikaj śmiało w **ikonę GitHuba u góry czatu**, zepnij konto i cała historia leci prosto do Twojego repo.\n\nJak tylko zepniesz gita, rzucaj temat:\n- Co dzisiaj kodzimy / stawiamy?\n- Nowy ficzer, refaktor, czy lecimy z czymś od zera?\n\nCzekam w blokach startowych! 🚀",
+      "status": "completed",
+      "model": "gemini-3.8-flash-high",
+      "client_type": "gemini-bridge",
+      "parent_message_id": "14833ecf-966b-442b-b77a-9cfbccf1901d",
+      "created_at": "2026-11-19T04:22:41.968Z",
+      "sender": "macOS",
+      "is_cancelled": false
     }
   ]
 }
