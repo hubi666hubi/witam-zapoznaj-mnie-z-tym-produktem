@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign In &bull; Logowanie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>W.F.P. MATRIX V5.0 • Kwatera Główna Monetyzacji & Swarmu</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -12,13 +12,26 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              50: '#eef2ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
+            matrix: {
+              50: '#e6fff0',
+              100: '#b3ffd0',
+              400: '#22c55e',
+              500: '#10b981',
+              800: '#064e3b',
+              900: '#022c22',
+              950: '#021811'
+            },
+            cyber: {
+              purple: '#a855f7',
+              pink: '#ec4899',
+              indigo: '#6366f1',
+              neon: '#06b6d4',
+              gold: '#eab308'
             }
+          },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace', 'ui-monospace'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif', 'system-ui']
           }
         }
       }
@@ -26,225 +39,901 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #030712;
     }
-    .mesh-bg {
-      background-color: #0f172a;
+    .font-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .mesh-glow {
       background-image: 
-        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.2) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.25) 0px, transparent 50%),
-        radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.22) 0px, transparent 45%),
+        radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.18) 0px, transparent 40%),
+        radial-gradient(at 50% 50%, rgba(168, 85, 247, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.15) 0px, transparent 40%),
+        radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.12) 0px, transparent 45%);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-ring {
+      animation: pulse-ring 2.5s infinite ease-in-out;
     }
   </style>
 </head>
-<body class="mesh-bg min-h-screen text-slate-100 flex flex-col justify-between antialiased selection:bg-indigo-500 selection:text-white">
+<body class="mesh-glow min-h-screen text-slate-100 flex flex-col antialiased selection:bg-emerald-500 selection:text-black pb-20 md:pb-8">
 
-  <!-- Header -->
-  <header class="w-full px-6 py-6 max-w-7xl mx-auto flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-        </svg>
+  <!-- TOP BAR: Status sieci & telemetryka -->
+  <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center gap-3">
+        <div class="relative flex items-center justify-center">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 text-white font-bold text-sm">
+            Ω
+          </div>
+          <span class="absolute -top-1 -right-1 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+          </span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-sm md:text-base font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 via-teal-200 to-indigo-300 bg-clip-text text-transparent">
+              W.F.P. MATRIX V5.0
+            </h1>
+            <span class="hidden sm:inline-block px-2 py-0.5 text-[10px] uppercase font-bold tracking-wider rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              Cloud HQ Live
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400 font-code truncate max-w-[200px] sm:max-w-none">
+            Repo: hubi666hubi &bull; Autonomiczny System Agentywny
+          </p>
+        </div>
       </div>
-      <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-        Antigravity App
-      </span>
-    </div>
-    
-    <div class="text-sm text-slate-400">
-      Potrzebujesz pomocy? <a href="#" class="text-indigo-400 hover:text-indigo-300 transition-colors underline underline-offset-4">Kontakt</a>
+
+      <!-- Live Quick Telemetry Badges -->
+      <div class="flex items-center gap-2">
+        <div class="hidden lg:flex items-center gap-3 bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-1.5 text-xs font-code">
+          <div class="flex items-center gap-1.5 text-emerald-400">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Pantheon: Guardrail ON</span>
+          </div>
+          <span class="text-slate-700">|</span>
+          <div class="flex items-center gap-1.5 text-indigo-400">
+            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+            <span>CRM: Moneco Max Ready</span>
+          </div>
+          <span class="text-slate-700">|</span>
+          <div class="flex items-center gap-1.5 text-purple-400">
+            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+            <span>Swarm: Thor + ThirdEye</span>
+          </div>
+        </div>
+
+        <button onclick="triggerTotalSystemPulse()" class="relative group flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-indigo-600 hover:from-emerald-400 hover:to-indigo-500 text-white text-xs font-semibold shadow-md shadow-emerald-500/20 active:scale-95 transition-all">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          <span class="font-bold">SYSTEM BOOST</span>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- Main Container -->
-  <main class="w-full max-w-md mx-auto px-4 py-8">
-    <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-black/50">
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 py-5 flex-1 w-full flex flex-col gap-5">
+
+    <!-- KPI STRIP -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
       
-      <!-- Tabs -->
-      <div class="flex p-1 mb-8 bg-slate-800/60 rounded-2xl border border-slate-700/50">
-        <button id="tab-signin" class="flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 bg-indigo-600 text-white shadow-md shadow-indigo-600/30">
-          Zaloguj się
-        </button>
-        <button id="tab-signup" class="flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200">
-          Zarejestruj się
-        </button>
-      </div>
-
-      <!-- Title & Subtitle -->
-      <div class="text-center mb-6">
-        <h1 id="form-title" class="text-2xl font-bold text-white tracking-tight">Witaj ponownie</h1>
-        <p id="form-subtitle" class="text-sm text-slate-400 mt-1.5">Wprowadź swoje dane, aby uzyskać dostęp do konta</p>
-      </div>
-
-      <!-- Social Logins -->
-      <div class="grid grid-cols-2 gap-3 mb-6">
-        <button type="button" class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-slate-700 bg-slate-800/40 hover:bg-slate-800 hover:border-slate-600 transition-all text-sm font-medium text-slate-200">
-          <svg class="w-4 h-4" viewBox="0 0 24 24">
-            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-          </svg>
-          Google
-        </button>
-        <button type="button" class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-slate-700 bg-slate-800/40 hover:bg-slate-800 hover:border-slate-600 transition-all text-sm font-medium text-slate-200">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-          </svg>
-          GitHub
-        </button>
-      </div>
-
-      <!-- Divider -->
-      <div class="relative flex items-center justify-center mb-6">
-        <div class="border-t border-slate-800 w-full"></div>
-        <span class="bg-slate-900 px-3 text-xs text-slate-500 uppercase tracking-wider">lub przez e-mail</span>
-        <div class="border-t border-slate-800 w-full"></div>
-      </div>
-
-      <!-- Form -->
-      <form id="auth-form" class="space-y-4">
-        <!-- Name field (hidden in login mode) -->
-        <div id="field-name" class="hidden">
-          <label class="block text-xs font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Imię i nazwisko</label>
-          <div class="relative">
-            <input type="text" id="input-name" placeholder="Jan Kowalski" 
-                   class="w-full bg-slate-950/60 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all" />
-          </div>
+      <div class="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-4 backdrop-blur-md relative overflow-hidden">
+        <div class="absolute -right-3 -top-3 w-16 h-16 bg-emerald-500/10 rounded-full blur-xl pointer-events-none"></div>
+        <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Stripe & MRR Flow</p>
+        <div class="flex items-baseline gap-2 mt-1">
+          <span class="text-xl md:text-2xl font-black text-white tracking-tight">84 500 PLN</span>
+          <span class="text-[11px] font-bold text-emerald-400 font-code">+22.4%</span>
         </div>
+        <p class="text-[10px] text-slate-500 mt-1 font-code">Cylinder Moneco Max &bull; Active</p>
+      </div>
 
-        <!-- Email field -->
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Adres e-mail</label>
-          <div class="relative">
-            <input type="email" id="input-email" required placeholder="twoj@email.com" 
-                   class="w-full bg-slate-950/60 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all" />
-          </div>
+      <div class="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-4 backdrop-blur-md relative overflow-hidden">
+        <div class="absolute -right-3 -top-3 w-16 h-16 bg-indigo-500/10 rounded-full blur-xl pointer-events-none"></div>
+        <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Leady High-Ticket</p>
+        <div class="flex items-baseline gap-2 mt-1">
+          <span id="kpi-leads" class="text-xl md:text-2xl font-black text-white tracking-tight">43 firm</span>
+          <span class="text-[11px] font-bold text-indigo-400 font-code">FB + KRS</span>
         </div>
+        <p class="text-[10px] text-slate-500 mt-1 font-code">XML Financial Check &bull; Verified</p>
+      </div>
 
-        <!-- Password field -->
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider">Hasło</label>
-            <a href="#" id="link-forgot" class="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">Nie pamiętasz hasła?</a>
+      <div class="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-4 backdrop-blur-md relative overflow-hidden">
+        <div class="absolute -right-3 -top-3 w-16 h-16 bg-purple-500/10 rounded-full blur-xl pointer-events-none"></div>
+        <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Pantheon Guardrail</p>
+        <div class="flex items-baseline gap-2 mt-1">
+          <span class="text-xl md:text-2xl font-black text-white tracking-tight">84.8%</span>
+          <span class="text-[11px] font-bold text-purple-400 font-code">SAVED</span>
+        </div>
+        <p class="text-[10px] text-slate-500 mt-1 font-code">Anti-Babol: 0 broken JSONs</p>
+      </div>
+
+      <div class="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-4 backdrop-blur-md relative overflow-hidden">
+        <div class="absolute -right-3 -top-3 w-16 h-16 bg-cyan-500/10 rounded-full blur-xl pointer-events-none"></div>
+        <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Demony Operacyjne</p>
+        <div class="flex items-baseline gap-2 mt-1">
+          <span class="text-xl md:text-2xl font-black text-white tracking-tight">4 / 4 LIVE</span>
+          <span class="text-[11px] font-bold text-cyan-400 font-code">100% OK</span>
+        </div>
+        <p class="text-[10px] text-slate-500 mt-1 font-code">MediaReactor &bull; Watcher &bull; Zenek</p>
+      </div>
+
+    </section>
+
+    <!-- NAVIGATION TABS -->
+    <div class="flex items-center gap-1.5 p-1 bg-slate-900/90 border border-slate-800/80 rounded-2xl overflow-x-auto custom-scroll">
+      <button onclick="switchTab('control')" id="btn-tab-control" class="tab-btn flex-1 min-w-[130px] py-2 px-3 text-xs font-bold rounded-xl transition-all duration-200 bg-emerald-600 text-white shadow-md shadow-emerald-600/30">
+        🎛️ Mostek (HQ)
+      </button>
+      <button onclick="switchTab('pantheon')" id="btn-tab-pantheon" class="tab-btn flex-1 min-w-[150px] py-2 px-3 text-xs font-bold rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200">
+        🧠 Pantheon Oracle
+      </button>
+      <button onclick="switchTab('leads')" id="btn-tab-leads" class="tab-btn flex-1 min-w-[140px] py-2 px-3 text-xs font-bold rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200">
+        🎯 Leady & KRS Intel
+      </button>
+      <button onclick="switchTab('creatives')" id="btn-tab-creatives" class="tab-btn flex-1 min-w-[140px] py-2 px-3 text-xs font-bold rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200">
+        🎨 AdForma & VSL
+      </button>
+      <button onclick="switchTab('swarm')" id="btn-tab-swarm" class="tab-btn flex-1 min-w-[130px] py-2 px-3 text-xs font-bold rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200">
+        🤖 Swarm (Thor)
+      </button>
+    </div>
+
+    <!-- TAB 1: KOKPIT OPERACYJNY (MOSTEK HQ) -->
+    <section id="tab-content-control" class="tab-panel flex flex-col lg:grid lg:grid-cols-3 gap-5">
+      
+      <!-- Lewa kolumna: Sterowanie cylindrami -->
+      <div class="lg:col-span-1 flex flex-col gap-4">
+        
+        <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-5 backdrop-blur-xl">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+              Cylindry Wykonawcze W.F.P.
+            </h3>
+            <span class="text-[10px] font-code text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Ready</span>
           </div>
-          <div class="relative">
-            <input type="password" id="input-password" required placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" 
-                   class="w-full bg-slate-950/60 border border-slate-700/80 rounded-xl pl-4 pr-11 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all" />
-            <button type="button" id="toggle-password" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors">
-              <svg id="eye-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-              </svg>
+
+          <div class="flex flex-col gap-2.5">
+            <button onclick="runCylinder('dopamine')" class="w-full text-left p-3 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 hover:border-emerald-500/50 transition-all flex items-center justify-between group">
+              <div>
+                <p class="text-xs font-bold text-slate-200 group-hover:text-emerald-400 transition-colors">1. Pętla Dopaminowa (DopamineLoop)</p>
+                <p class="text-[11px] text-slate-400">Wypchnij mutacje ewolucyjne do bazy PostgreSQL</p>
+              </div>
+              <span class="text-xs font-code text-emerald-400 opacity-80 group-hover:translate-x-1 transition-transform">⚡ START</span>
+            </button>
+
+            <button onclick="runCylinder('scrape_krs')" class="w-full text-left p-3 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 hover:border-indigo-500/50 transition-all flex items-center justify-between group">
+              <div>
+                <p class="text-xs font-bold text-slate-200 group-hover:text-indigo-400 transition-colors">2. Batch Skan FB + Audyt KRS</p>
+                <p class="text-[11px] text-slate-400">Wzbogać 10 nowych firm o sprawozdania XML</p>
+              </div>
+              <span class="text-xs font-code text-indigo-400 opacity-80 group-hover:translate-x-1 transition-transform">🔍 RUN</span>
+            </button>
+
+            <button onclick="runCylinder('antibabol')" class="w-full text-left p-3 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 hover:border-purple-500/50 transition-all flex items-center justify-between group">
+              <div>
+                <p class="text-xs font-bold text-slate-200 group-hover:text-purple-400 transition-colors">3. Anti-Babol Guardrail Self-Test</p>
+                <p class="text-[11px] text-slate-400">Wymuś uszkodzony JSON z taniego modelu i zbadaj auto-fallback</p>
+              </div>
+              <span class="text-xs font-code text-purple-400 opacity-80 group-hover:translate-x-1 transition-transform">🛡️ TEST</span>
+            </button>
+
+            <button onclick="runCylinder('moneco_outreach')" class="w-full text-left p-3 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 hover:border-cyan-500/50 transition-all flex items-center justify-between group">
+              <div>
+                <p class="text-xs font-bold text-slate-200 group-hover:text-cyan-400 transition-colors">4. Moneco Max: Masowy Outreach</p>
+                <p class="text-[11px] text-slate-400">Odpal potok pocztowy i webhook Make dla leadów High-Ticket</p>
+              </div>
+              <span class="text-xs font-code text-cyan-400 opacity-80 group-hover:translate-x-1 transition-transform">🚀 ODPAL</span>
             </button>
           </div>
         </div>
 
-        <!-- Checkbox / Remember me -->
-        <div class="flex items-center justify-between pt-1">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="remember-me" checked class="w-4 h-4 rounded border-slate-700 bg-slate-950 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-slate-900" />
-            <span class="text-xs text-slate-300">Zapamiętaj mnie</span>
-          </label>
+        <!-- Stan demonów -->
+        <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-4 backdrop-blur-xl">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            Demony w tle (Demon Suite)
+          </h4>
+          <div class="space-y-2 text-xs font-code">
+            <div class="flex items-center justify-between p-2 rounded-lg bg-slate-950/60 border border-slate-800/50">
+              <span class="text-slate-300">DEMON 03 - MediaReactor</span>
+              <span class="text-emerald-400 flex items-center gap-1 font-bold">● VSL Active</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-slate-950/60 border border-slate-800/50">
+              <span class="text-slate-300">DemonTscWatcher</span>
+              <span class="text-emerald-400 flex items-center gap-1 font-bold">● 0 Errors</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-slate-950/60 border border-slate-800/50">
+              <span class="text-slate-300">ZenekMonitor (L4 Sandbox)</span>
+              <span class="text-emerald-400 flex items-center gap-1 font-bold">● Listening</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-slate-950/60 border border-slate-800/50">
+              <span class="text-slate-300">Pantheon Watchdog Sync</span>
+              <span class="text-purple-400 flex items-center gap-1 font-bold">● Stripe Wh Live</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" id="btn-submit" 
-                class="w-full mt-2 py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600 hover:from-indigo-400 hover:via-indigo-500 hover:to-purple-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 active:scale-[0.99]">
-          <span id="btn-text">Zaloguj się</span>
-          <svg id="btn-spinner" class="hidden w-4 h-4 animate-spin text-white" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-          </svg>
-        </button>
-      </form>
+      </div>
 
-      <!-- Toast Feedback Message -->
-      <div id="toast-message" class="hidden mt-4 p-3 rounded-xl text-xs font-medium border text-center transition-all"></div>
+      <!-- Prawa kolumna: Terminal zdarzeń na żywo -->
+      <div class="lg:col-span-2 flex flex-col">
+        <div class="bg-slate-950 border border-slate-800/90 rounded-2xl flex flex-col h-[520px] shadow-2xl overflow-hidden font-code">
+          
+          <!-- Terminal header -->
+          <div class="bg-slate-900/90 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="flex gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+              </div>
+              <span class="text-xs text-slate-300 font-semibold ml-2">matrix_live_stream.log — Antigravity Orchestrator V5</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="clearTerminal()" class="text-[10px] text-slate-400 hover:text-slate-200 px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 transition-colors">
+                Wyczyść
+              </button>
+              <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+            </div>
+          </div>
 
-    </div>
+          <!-- Terminal content stream -->
+          <div id="terminal-stream" class="flex-1 p-4 overflow-y-auto space-y-1.5 text-xs text-slate-300 custom-scroll leading-relaxed">
+            <div class="text-slate-500">[04:30:11] === START SYSTEM INITIALIZATION: W.F.P. MATRIX OMEGA CORE ===</div>
+            <div><span class="text-purple-400">[04:30:12] [ANTIGRAVITY CORE]</span> 🌌 Odpalenie głównego spinacza struktur i monetyzacji...</div>
+            <div><span class="text-cyan-400">[04:30:13] [DEMON 03 - MEDIA REACTOR]</span> Kombajn autonomicznej produkcji wideo VSL uruchomiony.</div>
+            <div><span class="text-emerald-400">[04:30:15] [STRIPE KOMBAJN]</span> 🔌 Łączę transakcyjnie z bazą i potokiem pocztowym...</div>
+            <div><span class="text-indigo-400">[04:30:17] [PANTHEON ORACLE]</span> Guardrail Anti-Babol uzbrojony na portalu /portal/{lead_id}. Fallback Frontier: GPT-4o.</div>
+            <div><span class="text-amber-400">[04:30:20] [KRS ENGINE]</span> Załadowano schemat XML (brak heurystyk, jawna proveniencja kwot).</div>
+            <div><span class="text-emerald-400">[04:30:22] [SWARM BUS]</span> Thor-10x-Architect oraz The-Third-Eye zsynchronizowani w kanale #synergy_bridge.</div>
+            <div class="text-slate-400 mt-2 font-bold">[GOTOWOŚĆ BOJOWA OSIĄGNIĘTA. OCZEKIWANIE NA DYSPOZYCJĘ OPERATORA]</div>
+          </div>
+
+          <!-- Terminal command input -->
+          <div class="p-2.5 bg-slate-900/60 border-t border-slate-800/80 flex items-center gap-2">
+            <span class="text-emerald-400 text-sm font-bold pl-2">&gt;</span>
+            <input id="cmd-input" type="text" placeholder="Wpisz komendę (np. pulse, audit, leads, moneco, status) lub naciśnij Enter..." onkeydown="handleCmd(event)" class="flex-1 bg-transparent border-0 text-xs text-white placeholder-slate-500 focus:outline-none font-code" />
+            <button onclick="execCmd()" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold rounded-lg transition-colors">
+              Wyślij
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 2: PANTHEON ORACLE (ANTI-BABOL PLAYGROUND) -->
+    <section id="tab-content-pantheon" class="tab-panel hidden flex flex-col gap-5">
+      <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <span class="text-purple-400 text-xl">🧠</span>
+              Pantheon Oracle Gateway — Anti-Babol JSON Guardrail
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Mechanizm gwarantujący 100% poprawny JSON przy wykorzystaniu tanich modeli (Groq/Flash) z automatycznym hot-fallbackiem do modeli Frontier (GPT-4o/Claude).
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/30 text-xs font-code font-bold">
+              Model: BYOK Zero-Payload-Logging
+            </span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Test Generator -->
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
+                Przykładowy Schemat / Prompt wejściowy
+              </label>
+              <select id="oracle-schema-select" onchange="loadOracleSample()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-purple-500 font-code mb-2">
+                <option value="krs_lead">Kwalifikacja Leada B2B ze sprawozdania KRS</option>
+                <option value="vsl_script">Strukturyzowany Scenariusz VSL (Dopamine Loop)</option>
+                <option value="stripe_pricing">Kalkulacja Wyceny High-Ticket pod Stripe</option>
+              </select>
+              <textarea id="oracle-prompt" rows="5" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:border-purple-500 font-code custom-scroll" placeholder="Treść promptu..."></textarea>
+            </div>
+
+            <div class="p-3 bg-slate-950/60 rounded-xl border border-slate-800 space-y-2">
+              <div class="flex justify-between text-xs font-code">
+                <span class="text-slate-400">Wybrany model bazowy:</span>
+                <span class="text-emerald-400 font-bold">Qwen3.6 / Gemini 2.0 Flash (Tani: $0.00015/1k)</span>
+              </div>
+              <div class="flex justify-between text-xs font-code">
+                <span class="text-slate-400">Frontier Fallback Guard:</span>
+                <span class="text-purple-400 font-bold">GPT-4o / Claude 3.5 Sonnet ($0.015/1k)</span>
+              </div>
+              <div class="flex justify-between text-xs font-code">
+                <span class="text-slate-400">Tryb wymuszenia błędu (Symulacja zepsutego JSON):</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" id="simulate-babol-checkbox" class="sr-only peer" checked>
+                  <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-purple-600"></div>
+                </label>
+              </div>
+            </div>
+
+            <button onclick="testOracleGuardrail()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-purple-600/20 active:scale-98 transition-all flex items-center justify-center gap-2">
+              <span>🚀 Wykonaj Strzał przez Pantheon Gateway</span>
+            </button>
+          </div>
+
+          <!-- Wynik Guardraila -->
+          <div class="flex flex-col">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5 flex items-center justify-between">
+              <span>Odpowiedź & Metryki Routera</span>
+              <span id="oracle-status-pill" class="text-[10px] font-code px-2 py-0.5 rounded bg-slate-800 text-slate-400">Czeka na strzał</span>
+            </label>
+            <div id="oracle-output-box" class="flex-1 bg-slate-950 border border-slate-800 rounded-xl p-4 font-code text-xs text-slate-300 overflow-y-auto max-h-[340px] custom-scroll leading-relaxed">
+              <span class="text-slate-500">// Kliknij "Wykonaj Strzał", aby uruchomić routing przez bramkę Pantheon Oracle...</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: LEADY & KRS INTEL -->
+    <section id="tab-content-leads" class="tab-panel hidden flex flex-col gap-5">
+      <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <span class="text-indigo-400 text-xl">🎯</span>
+              Baza Leadów High-Ticket & Intel Finansowy KRS
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5 font-code">
+              Integracja scrapera FacebookLeads + parsera XML ze sprawozdań finansowych KRS
+            </p>
+          </div>
+          <button onclick="enrichNewLeads()" class="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-2 transition-colors self-start">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Skanuj nową paczkę
+          </button>
+        </div>
+
+        <div class="overflow-x-auto custom-scroll border border-slate-800 rounded-xl">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-950 text-slate-400 font-code uppercase text-[10px] border-b border-slate-800">
+              <tr>
+                <th class="py-3 px-4">Podmiot / Firma</th>
+                <th class="py-3 px-4">NIP / KRS</th>
+                <th class="py-3 px-4">Przychód (KRS XML)</th>
+                <th class="py-3 px-4">Zysk Netto</th>
+                <th class="py-3 px-4">Status & Score</th>
+                <th class="py-3 px-4 text-right">Akcja</th>
+              </tr>
+            </thead>
+            <tbody id="leads-tbody" class="divide-y divide-slate-800/60 font-code text-slate-200">
+              <!-- Renderowane dynamicznie przez JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Okienko wygenerowanego pitchu handlowego -->
+        <div id="lead-pitch-modal" class="hidden mt-4 p-4 rounded-xl bg-slate-950 border border-indigo-500/40 font-code text-xs">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-indigo-300 font-bold flex items-center gap-1.5">
+              <span>⚡</span> Wygenerowany zindywidualizowany pitch VSL / Offer dla firmy
+            </span>
+            <button onclick="document.getElementById('lead-pitch-modal').classList.add('hidden')" class="text-slate-400 hover:text-white">✕ Zamknij</button>
+          </div>
+          <div id="lead-pitch-content" class="text-slate-300 whitespace-pre-wrap leading-relaxed bg-slate-900/60 p-3 rounded-lg border border-slate-800"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 4: ADFORMA STUDIO & VSL GENERATOR -->
+    <section id="tab-content-creatives" class="tab-panel hidden flex flex-col gap-5">
+      <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-xl">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <span class="text-pink-400 text-xl">🎨</span>
+              Fabryka Kreacji — AdForma Studio & VSL Synthesizer
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Generuj studio-quality banery reklamowe we wszystkich formatach IAB oraz hipnotyzujące skrypty VSL
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Konfiguracja kreacji -->
+          <div class="lg:col-span-1 space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-300 mb-1">Produkt / Usługa</label>
+              <input id="ad-product" type="text" value="System Autonomicznych Agentów AI B2B" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-pink-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-300 mb-1">Główny Hook / Kąt Marketingowy</label>
+              <textarea id="ad-hook" rows="3" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:border-pink-500 custom-scroll">Zastąp 5-osobowy zespół outreachu autonomicznym kombajnem AI, który generuje 40+ leadów High-Ticket tygodniowo.</textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-300 mb-1">Call To Action (CTA)</label>
+              <input id="ad-cta" type="text" value="ODBIERZ DARMOWY AUDYT KRS" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-pink-500 font-bold text-emerald-400" />
+            </div>
+            <button onclick="synthesizeCreatives()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white font-bold text-xs shadow-lg shadow-pink-600/20 active:scale-98 transition-all">
+              ⚡ Wygeneruj Banery & Skrypt VSL
+            </button>
+          </div>
+
+          <!-- Podgląd banerów i VSL -->
+          <div class="lg:col-span-2 flex flex-col gap-4">
+            
+            <!-- Podgląd Banera IAB -->
+            <div>
+              <h4 class="text-xs font-bold uppercase text-slate-400 mb-2 font-code">Podgląd formatu Social / IAB Banner (1080x1080 & 1200x628)</h4>
+              <div id="banner-preview" class="p-6 rounded-2xl bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 border border-indigo-500/40 relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+                <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-pink-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="relative z-10">
+                  <span class="inline-block px-2.5 py-1 rounded-md bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold tracking-wider uppercase mb-2">
+                    AI HYPERGROWTH ENGINE
+                  </span>
+                  <h3 id="banner-title" class="text-lg md:text-xl font-extrabold text-white leading-tight">
+                    Zastąp 5-osobowy zespół outreachu autonomicznym kombajnem AI
+                  </h3>
+                  <p id="banner-subtitle" class="text-xs text-slate-300 mt-2 max-w-md">
+                    Wielomodelowa orkiestracja &bull; 0% błędów w danych &bull; Weryfikacja sprawozdań finansowych w KRS
+                  </p>
+                </div>
+                <div class="relative z-10 pt-4 flex items-center justify-between">
+                  <span class="text-[11px] font-code text-slate-400">W.F.P. Solutions &bull; hubi666hubi</span>
+                  <button id="banner-cta" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/30 transition-all">
+                    ODBIERZ DARMOWY AUDYT KRS
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Podgląd VSL Scriptu -->
+            <div>
+              <h4 class="text-xs font-bold uppercase text-slate-400 mb-2 font-code">Skrypt VSL (Video Sales Letter) — 3-fazowa pętla perswazyjna</h4>
+              <div id="vsl-preview-box" class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs font-code text-slate-300 whitespace-pre-wrap leading-relaxed max-h-[160px] overflow-y-auto custom-scroll">
+[FAZA 1 - PATTERN INTERRUPT / HOOK]
+"Jeśli w 2026 roku nadal zatrudniasz stażystów do ręcznego szukania leadów na LinkedInie lub grupach na Facebooku, przepalasz od 8 do 15 tysięcy złotych miesięcznie na błędy i halucynacje..."
+
+[FAZA 2 - AGITACJA & INTEL KRS]
+"Tradycyjne scrapery wypluwają martwe maile. Nasz system podpina się pod bazę XML KRS, weryfikuje czy spółka miała w zeszłym roku ponad 500 tys. zysku, i dopiero wtedy przygotowuje ofertę."
+
+[FAZA 3 - CALL TO ACTION / MONETIZATION]
+"Kliknij poniżej. Dostaniesz 5 próbnych zapytań z gwarancją Anti-Babol przez Pantheon Oracle i gotową integrację pod Twoje API."
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: SWARM AGENTYWNY (THOR & THIRD EYE) -->
+    <section id="tab-content-swarm" class="tab-panel hidden flex flex-col gap-5">
+      <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <span class="text-emerald-400 text-xl">🤖</span>
+              Antigravity Swarm HQ — Pętla Samonaprawiająca (Self-Healing A2A)
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Architektura zdefiniowana w <code class="text-emerald-400">antigravity_swarm.json</code>: Równoległa praca Architekta (Thor) i Cenzora Bezpieczeństwa (The Third Eye).
+            </p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 text-xs font-code font-bold self-start">
+            Execution Mode: continuous_swarm
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+          
+          <!-- Agent 1: Thor -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-emerald-500/40 relative overflow-hidden">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
+                  ⚡
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Thor-10x-Software-Architect</h4>
+                  <p class="text-[10px] text-slate-400 font-code">Senior Fullstack Engineer & Devops Supreme</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-code px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+                Temp: 0.1
+              </span>
+            </div>
+            <p class="text-xs text-slate-300 font-code leading-relaxed bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+              "Pisz ultra-skalowalne komponenty asynchroniczne. Implementuj wzorce obronne i naprawiaj kod w autonomicznej pętli do skutku."
+            </p>
+            <div class="mt-3 flex gap-2">
+              <span class="text-[10px] font-code px-2 py-0.5 rounded bg-slate-800 text-slate-300">file_manipulation</span>
+              <span class="text-[10px] font-code px-2 py-0.5 rounded bg-slate-800 text-slate-300">self_debugging</span>
+            </div>
+          </div>
+
+          <!-- Agent 2: The Third Eye -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-rose-500/40 relative overflow-hidden">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-sm">
+                  👁️
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">The-Third-Eye-Supervising-Overlord</h4>
+                  <p class="text-[10px] text-slate-400 font-code">Chief Auditor, SecOps & Business Guard</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-code px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800">
+                Temp: 0.0
+              </span>
+            </div>
+            <p class="text-xs text-slate-300 font-code leading-relaxed bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+              "Wykonuj bezwzględną analizę AST i odrzucaj wszelkie próby wstrzyknięcia niebezpiecznych instrukcji systemowych."
+            </p>
+            <div class="mt-3 flex gap-2">
+              <span class="text-[10px] font-code px-2 py-0.5 rounded bg-slate-800 text-slate-300">code_static_analysis</span>
+              <span class="text-[10px] font-code px-2 py-0.5 rounded bg-slate-800 text-slate-300">kill_switch_active</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- A2A Dialogue Stream -->
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-code text-xs">
+          <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-800/80">
+            <span class="text-slate-400 font-bold uppercase text-[11px]">Dialog Agent-to-Agent (A2A Live Channel)</span>
+            <button onclick="triggerA2APatch()" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-emerald-400 text-[10px] font-bold transition-colors">
+              + Wymuś Nowy Patch & Audyt AST
+            </button>
+          </div>
+          <div id="a2a-stream" class="space-y-2 text-slate-300 max-h-[220px] overflow-y-auto custom-scroll leading-relaxed">
+            <div class="text-emerald-400">[Thor-10x]: Wygenerowano asynchroniczny hot-patch dla modułu server/antigravityOrchestrator.ts (wstrzyknięcie bufora dla zapytań KRS). Przekazuję do walidacji AST.</div>
+            <div class="text-rose-400">[Third-Eye]: Analiza AST zakończona pomyślnie. Brak wycieków pamięci, reguły bezpieczeństwa Firebase zachowane. Zezwolenie na zapis atomowy do bazy.</div>
+            <div class="text-slate-500">[System]: Patch zarejestrowany w rejestrze selfEvolution.ts (Score: 0.98).</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer class="w-full px-6 py-6 text-center text-xs text-slate-500">
-    &copy; 2026 Antigravity Workspace &bull; Bezpieczne logowanie z szyfrowaniem TLS
-  </footer>
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 border border-emerald-500/50 text-white text-xs px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2.5 font-code">
+    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+    <span id="toast-msg">Komunikat systemowy</span>
+  </div>
 
-  <!-- Interactive JavaScript -->
   <script>
-    const tabSignIn = document.getElementById('tab-signin');
-    const tabSignUp = document.getElementById('tab-signup');
-    const formTitle = document.getElementById('form-title');
-    const formSubtitle = document.getElementById('form-subtitle');
-    const fieldName = document.getElementById('field-name');
-    const inputName = document.getElementById('input-name');
-    const linkForgot = document.getElementById('link-forgot');
-    const btnText = document.getElementById('btn-text');
-    const authForm = document.getElementById('auth-form');
-    const togglePassword = document.getElementById('toggle-password');
-    const inputPassword = document.getElementById('input-password');
-    const btnSpinner = document.getElementById('btn-spinner');
-    const toastMessage = document.getElementById('toast-message');
+    // Baza przykładowych leadów FB + KRS
+    const INITIAL_LEADS = [
+      { name: "ProSoft Automations Sp. z o.o.", nip: "5252819401", rev: "4 850 000 PLN", net: "+620 000 PLN", score: "96 / 100", status: "HIGH_TICKET", source: "FB Inbound" },
+      { name: "Nordic Apex Logistics S.A.", nip: "5833190281", rev: "12 400 000 PLN", net: "+1 450 000 PLN", score: "92 / 100", status: "HIGH_TICKET", source: "KRS Skan" },
+      { name: "E-Commerce Velocity Hub", nip: "6762590114", rev: "1 920 000 PLN", net: "+210 000 PLN", score: "88 / 100", status: "MEDIUM", source: "FB Grupy" },
+      { name: "Stitch & Cloud Consulting", nip: "8971849203", rev: "890 000 PLN", net: "+95 000 PLN", score: "84 / 100", status: "MEDIUM", source: "FB Ads" },
+      { name: "FinTech Prime Labs", nip: "5272901488", rev: "7 300 000 PLN", net: "+890 000 PLN", score: "94 / 100", status: "HIGH_TICKET", source: "Inbound" }
+    ];
 
-    let currentMode = 'signin';
+    let leads = [...INITIAL_LEADS];
 
-    function setMode(mode) {
-      currentMode = mode;
-      toastMessage.classList.add('hidden');
-      if (mode === 'signin') {
-        tabSignIn.className = 'flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 bg-indigo-600 text-white shadow-md shadow-indigo-600/30';
-        tabSignUp.className = 'flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200';
-        formTitle.textContent = 'Witaj ponownie';
-        formSubtitle.textContent = 'Wprowadź swoje dane, aby uzyskać dostęp do konta';
-        fieldName.classList.add('hidden');
-        inputName.removeAttribute('required');
-        linkForgot.classList.remove('hidden');
-        btnText.textContent = 'Zaloguj się';
-      } else {
-        tabSignUp.className = 'flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 bg-indigo-600 text-white shadow-md shadow-indigo-600/30';
-        tabSignIn.className = 'flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200';
-        formTitle.textContent = 'Utwórz nowe konto';
-        formSubtitle.textContent = 'Zacznij korzystać z platformy w kilka sekund';
-        fieldName.classList.remove('hidden');
-        inputName.setAttribute('required', 'true');
-        linkForgot.classList.add('hidden');
-        btnText.textContent = 'Zarejestruj się';
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      toastMsg.innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('bg-emerald-600', 'text-white', 'shadow-md', 'shadow-emerald-600/30');
+        b.classList.add('text-slate-400');
+      });
+
+      const activePanel = document.getElementById('tab-content-' + tabId);
+      const activeBtn = document.getElementById('btn-tab-' + tabId);
+      if (activePanel) activePanel.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.classList.add('bg-emerald-600', 'text-white', 'shadow-md', 'shadow-emerald-600/30');
+        activeBtn.classList.remove('text-slate-400');
       }
     }
 
-    tabSignIn.addEventListener('click', () => setMode('signin'));
-    tabSignUp.addEventListener('click', () => setMode('signup'));
+    function appendTerminal(msg, colorClass = "text-slate-300") {
+      const stream = document.getElementById('terminal-stream');
+      const time = new Date().toTimeString().split(' ')[0];
+      const div = document.createElement('div');
+      div.className = colorClass;
+      div.innerHTML = `<span class="text-slate-500">[${time}]</span> ${msg}`;
+      stream.appendChild(div);
+      stream.scrollTop = stream.scrollHeight;
+    }
 
-    // Toggle Password Visibility
-    let showPassword = false;
-    togglePassword.addEventListener('click', () => {
-      showPassword = !showPassword;
-      inputPassword.type = showPassword ? 'text' : 'password';
-      togglePassword.classList.toggle('text-indigo-400', showPassword);
-      togglePassword.classList.toggle('text-slate-400', !showPassword);
-    });
+    function clearTerminal() {
+      document.getElementById('terminal-stream').innerHTML = '<div class="text-slate-500">// Terminal wyczyszczony przez operatora.</div>';
+    }
 
-    // Form submission simulation
-    authForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      btnSpinner.classList.remove('hidden');
-      btnText.textContent = currentMode === 'signin' ? 'Logowanie...' : 'Tworzenie konta...';
+    function triggerTotalSystemPulse() {
+      appendTerminal("🌌 [SYSTEM BOOST]: Inicjalizacja pełnego impulsu hiperwzrostu (executeTotalSystemBoost)...", "text-purple-400 font-bold");
+      setTimeout(() => {
+        appendTerminal("⚡ [DOPAMINE LOOP]: Wygenerowano impuls dopaminowy dla 43 leadów. Mutacja ewolucyjna zapisana.", "text-emerald-400");
+        appendTerminal("🛡️ [PANTHEON GUARDRAIL]: 0 błędów składniowych w kanale #code_deployments.", "text-indigo-400");
+        showToast("🚀 System Boost zakończony z sukcesem! Wszystkie cylindry aktywne.");
+      }, 600);
+    }
+
+    function runCylinder(type) {
+      if (type === 'dopamine') {
+        appendTerminal("🧬 [CYLINDER 1]: Odpalenie Pętli Dopaminowej (DopamineLoop)...", "text-emerald-400");
+        setTimeout(() => {
+          appendTerminal("✔ Zaktualizowano wskaźnik ROI o +14.2% w bazie PostgreSQL.", "text-slate-300");
+          showToast("Pętla dopaminowa zsynchronizowana!");
+        }, 500);
+      } else if (type === 'scrape_krs') {
+        appendTerminal("🔍 [CYLINDER 2]: Rozruch scrapera FB + pobranie paczki XML z e-KRS...", "text-indigo-400");
+        setTimeout(() => {
+          const newLead = { name: "AeroTech Drones Sp. z o.o.", nip: "7010912443", rev: "3 400 000 PLN", net: "+410 000 PLN", score: "91 / 100", status: "HIGH_TICKET", source: "FB + KRS" };
+          leads.unshift(newLead);
+          renderLeads();
+          document.getElementById('kpi-leads').innerText = leads.length + " firm";
+          appendTerminal(`✔ Pozyskano nowy podmiot: ${newLead.name} (Przychód: ${newLead.rev}, Zysk: ${newLead.net})`, "text-emerald-400 font-bold");
+          showToast("Pozyskano i zweryfikowano nowy lead w KRS!");
+        }, 800);
+      } else if (type === 'antibabol') {
+        switchTab('pantheon');
+        testOracleGuardrail();
+      } else if (type === 'moneco_outreach') {
+        appendTerminal("💸 [CYLINDER 4 - MONECO MAX]: Wyciągam leady High-Ticket i odpalam masowy outreach...", "text-cyan-400 font-bold");
+        setTimeout(() => {
+          appendTerminal("✔ Wysłano 12 zindywidualizowanych zapytań z syntezą wideo VSL.", "text-emerald-400");
+          appendTerminal("✔ Webhook Make/Jarvis odebrał pomyślny status HTTP 200.", "text-slate-300");
+          showToast("Kampania Moneco Max odpalona!");
+        }, 900);
+      }
+    }
+
+    function handleCmd(e) {
+      if (e.key === 'Enter') execCmd();
+    }
+
+    function execCmd() {
+      const input = document.getElementById('cmd-input');
+      const val = input.value.trim().toLowerCase();
+      if (!val) return;
+      input.value = '';
+
+      appendTerminal(`> ${val}`, "text-emerald-400 font-bold");
+      
+      if (val === 'pulse' || val === 'boost') {
+        triggerTotalSystemPulse();
+      } else if (val === 'clear') {
+        clearTerminal();
+      } else if (val === 'leads') {
+        switchTab('leads');
+      } else if (val === 'pantheon') {
+        switchTab('pantheon');
+      } else if (val === 'creatives' || val === 'vsl') {
+        switchTab('creatives');
+      } else if (val === 'swarm') {
+        switchTab('swarm');
+      } else if (val === 'status') {
+        appendTerminal("STAN SYSTEMU: WFP Matrix V5.0: OK | Demony: 4/4 | Pantheon Gateway: ONLINE | Stripe Wh: SYNCED", "text-cyan-400");
+      } else {
+        appendTerminal(`Nieznana komenda: "${val}". Dostępne: pulse, leads, pantheon, creatives, swarm, status, clear.`, "text-rose-400");
+      }
+    }
+
+    // PANTHEON ORACLE LOGIC
+    const PROMPT_SAMPLES = {
+      krs_lead: `Zweryfikuj poniższe sprawozdanie XML KRS dla spółki i zwróć czysty JSON ze schematem:
+{
+  "company_name": string,
+  "nip": string,
+  "annual_revenue_pln": number,
+  "net_profit_pln": number,
+  "solvency_score": number, // 0-100
+  "is_high_ticket": boolean
+}`,
+      vsl_script: `Wygeneruj perswazyjny skrypt VSL w formacie JSON z polami: hook, problem_agitation, solution, cta_url, estimated_conversion_rate.`,
+      stripe_pricing: `Wylicz rekomendowaną stawkę subskrypcji SaaS i pakietu setup w JSON z polami: monthly_mrr_usd, onboarding_fee_usd, ltv_projection.`
+    };
+
+    function loadOracleSample() {
+      const sel = document.getElementById('oracle-schema-select').value;
+      document.getElementById('oracle-prompt').value = PROMPT_SAMPLES[sel] || '';
+    }
+
+    function testOracleGuardrail() {
+      const box = document.getElementById('oracle-output-box');
+      const statusPill = document.getElementById('oracle-status-pill');
+      const simulateBabol = document.getElementById('simulate-babol-checkbox').checked;
+
+      statusPill.className = "text-[10px] font-code px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40";
+      statusPill.innerText = "Zapytanie w locie...";
+
+      box.innerHTML = `<span class="text-slate-400 font-bold">1. Wysyłam zapytanie do taniego modelu (Groq / Gemini 2.0 Flash) za $0.00015/1k tokenów...</span><br/>`;
 
       setTimeout(() => {
-        btnSpinner.classList.add('hidden');
-        btnText.textContent = currentMode === 'signin' ? 'Zaloguj się' : 'Zarejestruj się';
-        
-        toastMessage.className = 'mt-4 p-3 rounded-xl text-xs font-medium border text-center transition-all bg-emerald-950/70 text-emerald-300 border-emerald-700/60';
-        toastMessage.textContent = currentMode === 'signin' 
-          ? 'Sukces! Zalogowano pomyślnie. Witamy w panelu.' 
-          : 'Konto zostało utworzone! Sprawdź pocztę e-mail, aby je aktywować.';
-        toastMessage.classList.remove('hidden');
-      }, 1000);
+        if (simulateBabol) {
+          box.innerHTML += `<span class="text-rose-400 font-bold">2. [ANTI-BABOL INTERCEPT] ⚠️ Wykryto uszkodzony JSON z taniego modelu!</span><br/>
+<span class="text-slate-400">Surowy output modelu:</span> <span class="text-rose-300">{"company_name": "ProSoft Sp. z o.o.", "nip": "5252819401", "revenue": 4850000, ... [BROKEN SYNTAX ERROR: Unexpected token &apos;]&apos; at line 4]</span><br/><br/>
+<span class="text-purple-400 font-bold">3. [AUTOMATYCZNY FALLBACK] 🔄 Brama Pantheon Oracle natychmiast przekierowuje payload do modelu Frontier (GPT-4o) bez przerywania sesji klienta...</span><br/><br/>
+<span class="text-emerald-400 font-bold">4. [PERFEKCYJNY WYNIK GWARANTOWANY]:</span><br/>
+<pre class="text-emerald-300 mt-1 bg-slate-900 p-2.5 rounded border border-emerald-500/30 overflow-x-auto">{
+  "company_name": "ProSoft Automations Sp. z o.o.",
+  "nip": "5252819401",
+  "annual_revenue_pln": 4850000,
+  "net_profit_pln": 620000,
+  "solvency_score": 96,
+  "is_high_ticket": true,
+  "_guardrail_meta": {
+    "recovered_by": "frontier_gpt4o",
+    "saved_usd": "$0.0214",
+    "latency_ms": 312
+  }
+}</pre>`;
+          statusPill.className = "text-[10px] font-code px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+          statusPill.innerText = "Naprawiono przez Anti-Babol (100% OK)";
+          appendTerminal("🛡️ [PANTHEON]: Wykryto i automatycznie naprawiono błąd JSON z taniego modelu. Klient otrzymał poprawny schemat.", "text-purple-400");
+          showToast("Anti-Babol Guardrail: Auto-naprawiono schemat JSON!");
+        } else {
+          box.innerHTML += `<span class="text-emerald-400 font-bold">2. Tani model zwrócił 100% poprawny JSON. Brak konieczności fallbacku (Zero dodatkowych kosztów).</span><br/>
+<pre class="text-emerald-300 mt-2 bg-slate-900 p-2.5 rounded border border-emerald-500/30 overflow-x-auto">{
+  "status": "success",
+  "cost_usd": 0.00018,
+  "latency_ms": 142
+}</pre>`;
+          statusPill.className = "text-[10px] font-code px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+          statusPill.innerText = "Wykonano bez błędu";
+        }
+      }, 700);
+    }
+
+    // LEADS & KRS RENDERER
+    function renderLeads() {
+      const tbody = document.getElementById('leads-tbody');
+      tbody.innerHTML = '';
+      leads.forEach((l, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-900/60 transition-colors";
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-bold text-white flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full ${l.status === 'HIGH_TICKET' ? 'bg-emerald-400' : 'bg-indigo-400'}"></span>
+            ${l.name}
+          </td>
+          <td class="py-3 px-4 text-slate-400">${l.nip}</td>
+          <td class="py-3 px-4 text-emerald-300 font-bold">${l.rev}</td>
+          <td class="py-3 px-4 text-slate-300">${l.net}</td>
+          <td class="py-3 px-4">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${l.status === 'HIGH_TICKET' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-slate-800 text-slate-300'}">
+              ${l.score}
+            </span>
+          </td>
+          <td class="py-3 px-4 text-right">
+            <button onclick="generateLeadPitch(${idx})" class="px-2.5 py-1 rounded bg-indigo-600/80 hover:bg-indigo-600 text-white font-bold text-[10px] transition-colors">
+              Pitch VSL
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function generateLeadPitch(idx) {
+      const l = leads[idx];
+      const modal = document.getElementById('lead-pitch-modal');
+      const content = document.getElementById('lead-pitch-content');
+      modal.classList.remove('hidden');
+
+      content.innerText = `Cześć Zarządzie ${l.name}!
+
+Widzimy w oficjalnym sprawozdaniu KRS, że wygenerowaliście ${l.rev} przychodu i ${l.net} zysku netto. 
+Przy tej skali operacyjnej, obsługa outreachu tradycyjnymi metodami kosztuje Was minimum 12 000 PLN miesięcznie w samych roboczogodzinach.
+
+Nasz kombajn agentywny W.F.P. (uzbrojony w bramkę Pantheon Oracle z zerowym ryzykiem halucynacji) pozwala zautomatyzować pozyskiwanie klientów B2B z gwarancją zwrotu z inwestycji w 30 dni.
+
+Czy możemy podesłać 2-minutowe spersonalizowane demo wideo przygotowane pod NIP ${l.nip}?
+
+Pozdrawiamy,
+Zespół W.F.P. Solutions`;
+
+      appendTerminal(`🎯 [LEAD OUTREACH]: Wygenerowano zindywidualizowany pitch VSL dla ${l.name}`, "text-indigo-400");
+      showToast(`Wygenerowano pitch dla: ${l.name}`);
+    }
+
+    function enrichNewLeads() {
+      runCylinder('scrape_krs');
+    }
+
+    // CREATIVES SYNTHESIZER
+    function synthesizeCreatives() {
+      const prod = document.getElementById('ad-product').value;
+      const hook = document.getElementById('ad-hook').value;
+      const cta = document.getElementById('ad-cta').value;
+
+      document.getElementById('banner-title').innerText = hook;
+      document.getElementById('banner-subtitle').innerText = prod + " • Zero-error data orchestration • Automatyzacja 24/7";
+      document.getElementById('banner-cta').innerText = cta;
+
+      appendTerminal(`🎨 [ADFORMA STUDIO]: Zsyntetyzowano nowy zestaw banerów (1080x1080, 1200x628, 300x250) pod hook: "${hook.slice(0, 40)}..."`, "text-pink-400");
+      showToast("Banery i skrypt VSL zaktualizowane!");
+    }
+
+    // A2A TRIGGER
+    function triggerA2APatch() {
+      const a2a = document.getElementById('a2a-stream');
+      const patches = [
+        "[Thor-10x]: Przygotowałem zoptymalizowany driver DuckDB w pamięci podręcznej dla Pantheon Oracle. Zapytania /v1/chat/completions będą teraz buforowane o 40% szybciej.",
+        "[Thor-10x]: Wdrożyłem schemat walidacji Stripe Webhook w stripeKombajnDistributor.ts – wyeliminowano race condition przy równoczesnych subskrypcjach.",
+        "[Thor-10x]: Dodano asynchroniczny rate limiter do scrapera FB, zapobiegający blokadom kont przy masowym procesowaniu."
+      ];
+      const randomPatch = patches[Math.floor(Math.random() * patches.length)];
+      
+      const p1 = document.createElement('div');
+      p1.className = "text-emerald-400";
+      p1.innerText = randomPatch;
+      a2a.appendChild(p1);
+
+      setTimeout(() => {
+        const p2 = document.createElement('div');
+        p2.className = "text-rose-400";
+        p2.innerText = "[Third-Eye]: Audyt AST: Błędy = 0, Naruszenia zasad bezpieczeństwa = 0. Zgoda na wdrożenie patcha do głównej gałęzi.";
+        a2a.appendChild(p2);
+        a2a.scrollTop = a2a.scrollHeight;
+        appendTerminal("🤖 [SWARM A2A]: Pomyślnie zwalidowano i zaakceptowano patch przez The Third Eye.", "text-emerald-400");
+        showToast("Swarm: Nowy patch zaakceptowany przez cenzora AST!");
+      }, 500);
+    }
+
+    // Inicjalizacja
+    document.addEventListener('DOMContentLoaded', () => {
+      renderLeads();
+      loadOracleSample();
     });
   </script>
 </body>
