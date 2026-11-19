@@ -64,6 +64,18 @@
       "created_at": "2026-11-19T04:20:28.561Z",
       "sender": "ios",
       "is_cancelled": false
+    },
+    {
+      "id": "a8c07894-e51d-4fcb-b01a-05c3100cb03c",
+      "role": "agent",
+      "content": "Możesz przenieść swoje projekty z komputera tutaj lub pracować z nimi w Antigravity na kilka wygodnych sposobów:\n\n---\n\n### 1. Przeciągnięcie plików do czatu (Drag & Drop)\n* Najszybsza metoda: przeciągnij pliki projektu lub wklej kod bezpośrednio w pole wiadomości na czacie.\n* Rozpakuję je, umieszczę w bieżącym workspace i od razu będziemy mogli kontynuować nad nimi pracę.\n\n---\n\n### 2. Synchronizacja przez GitHub\n* Jeśli masz swój projekt na GitHubie (lub możesz go tam z PC wypchnąć), możesz łatwo zarządzać nim w Antigravity.\n* Aby połączyć ten czat ze swoim kontem GitHub, kliknij **ikonę GitHuba u góry czatu**.\n\n---\n\n### 3. Uruchomienie Antigravity bezpośrednio na swoim PC\nMożesz korzystać z agenta Antigravity bezpośrednio na dysku swojego komputera:\n* **Antigravity IDE / Desktop 2.0** — aplikacja deweloperska na komputer, która otwiera lokalne foldery z Twojego dysku i ma wbudowanego agenta.\n* **Antigravity CLI (`agy`)** — narzędzie terminalowe, które możesz odpalić w folderze swojego projektu na PC.\n\n---\n\nO jakim projekcie mowa (jaki język lub framework: np. Python, React, WordPress, HTML/CSS)? Daj znać, a podpowiem najprostszy krok!",
+      "status": "completed",
+      "model": "gemini-3.8-flash-high",
+      "client_type": "gemini-bridge",
+      "parent_message_id": "4ef630f0-fb65-4649-89c6-2a609b1e4226",
+      "created_at": "2026-11-19T04:20:44.610Z",
+      "sender": "macOS",
+      "is_cancelled": false
     }
   ]
 }
