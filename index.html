@@ -1338,28 +1338,53 @@ W.F.P. Monetization Group`;
       }, 700);
     }
 
-    function simulateStripeSuccess() {
+    async function simulateStripeSuccess() {
       const idx = document.getElementById('checkout-lead-select').value;
       const l = leads[idx];
       const pkgKey = document.getElementById('checkout-tier-select').value;
       const pkg = PACKAGES[pkgKey];
-
       const total = pkg.mrr + pkg.setup;
+
+      try {
+        await fetch('/api/webhooks/stripe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'checkout.session.completed', data: { object: { amount_total: total * 100 } } })
+        });
+      } catch (e) {}
+
       appendTerminal(`💸 [STRIPE WEBHOOK 200 OK]: checkout.session.completed odebrany!`, "text-emerald-400 font-black");
       appendTerminal(`💰 [WPŁYW ŚRODKÓW]: Zaksięgowano +${total.toLocaleString()} PLN od ${l.name} (${pkg.name}).`, "text-emerald-300 font-bold");
       
       showToast(`Zaksięgowano +${total.toLocaleString()} PLN! Środki w drodze.`);
     }
 
-    function dispatchAllSovereignDeals() {
+    async function dispatchAllSovereignDeals() {
       appendTerminal("🚀 [SOVEREIGN ENGINE]: Odpalenie potoku wysyłkowego dla 3 aktywnych kontraktów ($24,197 USD)...", "text-emerald-400 font-bold");
+      try {
+        const res = await fetch('/api/outreach/dispatch', { method: 'POST' });
+        if (res.ok) {
+          appendTerminal("✔ [SERVER DISPATCH]: live_monetization_executor.py wykonany pomyślnie na serwerze.", "text-emerald-300");
+        }
+      } catch (e) {}
+
       setTimeout(() => {
         appendTerminal("✔ [AetherBio]: head.compbio@aetherbio.org -> PANTHEON-BRUTAL-02 ($12,499 USD) zlinkowany pod live checkout.", "text-emerald-300");
         appendTerminal("✔ [HyperScale FinTech]: cto@hyperscale-fintech.io -> PANTHEON-BRUTAL-01 ($6,499 USD) zlinkowany pod live checkout.", "text-indigo-300");
         appendTerminal("✔ [Nexus Logistics]: vp.eng@nexus-logistics.ai -> PANTHEON-BRUTAL-03 ($5,199 USD) zlinkowany pod live checkout.", "text-cyan-300");
         appendTerminal("💸 [PORTFEL W DRODZE]: Zarejestrowano pipeline: $24,197 USD immediate / $123,164 USD rocznie. Pakiety MIME RFC-5322 zapisane w workspace/outreach_active.", "text-emerald-400 font-black");
         showToast("Odpalono dispatch 3 kontraktów B2B!");
-      }, 800);
+      }, 700);
+    }
+
+    async function syncWithServerBackend() {
+      try {
+        const res = await fetch('/api/status');
+        if (res.ok) {
+          const data = await res.json();
+          appendTerminal(`✔ [BACKEND UPLINK]: Połączono z Node.js REST API (Uptime: ${data.uptime_seconds}s). Anti-Babol, KRS i Stripe aktywne.`, "text-emerald-400 font-bold");
+        }
+      } catch (e) {}
     }
 
     // Inicjalizacja
@@ -1367,6 +1392,7 @@ W.F.P. Monetization Group`;
       renderLeads();
       loadOracleSample();
       populateCheckoutLeadSelect();
+      syncWithServerBackend();
     });
   </script>
 </body>

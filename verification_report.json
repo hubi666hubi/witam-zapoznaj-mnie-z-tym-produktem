@@ -1,17 +1,17 @@
 {
-  "timestamp": 1795066487.2522266,
+  "timestamp": 1795066903.4066844,
   "all_passed": true,
   "results": [
     {
       "name": "Anti-Babol JSON Guardrail & Fallback Engine",
       "passed": true,
-      "duration_ms": 8,
+      "duration_ms": 5,
       "error": null
     },
     {
       "name": "KRS B2B Financial Scorer & Tier Allocator",
       "passed": true,
-      "duration_ms": 1,
+      "duration_ms": 0,
       "error": null
     },
     {
@@ -23,7 +23,7 @@
     {
       "name": "Node.js Sovereign REST API Server Endpoints",
       "passed": true,
-      "duration_ms": 836,
+      "duration_ms": 825,
       "error": null
     }
   ]
